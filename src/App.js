@@ -9,8 +9,6 @@ class App extends Component {
     good: 0,
     neutral: 0,
     bad: 0,
-    total: 0,
-    positivePercentage: 0,
   };
   plusGood = () => {
     this.setState((prevState) => ({
@@ -38,11 +36,11 @@ class App extends Component {
     if (!this.state.good) {
       return 0;
     }
-    return Math.round((this.state.good * 100) / this.countTotal());
+    return ((this.state.good * 100) / this.countTotal()).toFixed(2);
   };
 
   render() {
-    const { good, neutral, bad, total, positivePercentage } = this.state;
+    const { good, neutral, bad } = this.state;
     return (
       <>
         <Header />
@@ -56,8 +54,6 @@ class App extends Component {
           good={good}
           neutral={neutral}
           bad={bad}
-          total={total}
-          positivePercentage={positivePercentage}
           countTotal={this.countTotal}
           countPercentage={this.countPercentage}
         />
